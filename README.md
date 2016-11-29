@@ -14,3 +14,6 @@ The reason for this repo is test the boundaries between native mobile and HTML5/
 As HTML5 and JavaScript has evolved more and more areas of the mobile device hardware is available the browser.
 
 There are still some browser support issues.
+
+
+## Not meant to replace native mobile apps completely.

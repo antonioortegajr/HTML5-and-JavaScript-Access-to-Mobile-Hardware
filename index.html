@@ -1,10 +1,15 @@
 <html>
 <head>
+  <!-- thanks to:
+      https://github.com/girliemac/presentation-slides/
+      https://davidwalsh.name/demo/camera.php
+      http://www.w3schools.com/html/html5_geolocation.asp
+      https://www.html5rocks.com/en/tutorials/device/orientation/
+    -->
 </head>
 <body>
   <p>This page is just HTML5 and Javascript. You will be asked for permission to access your hardware</p>
   <p>Canvas tag for the snap shot:</p>
-  <!-- thanks to https://davidwalsh.name/demo/camera.php -->
   <video id="video" width="340" autoplay></video>
   <p>
       <button id="snap" class="sexyButton" onclick="snapShot()">Snap Photo</button>
@@ -26,10 +31,19 @@
           "<br>Longitude: " + position.coords.longitude;
           }
 
-
-
-
         }
+      //light event
+      window.addEventListener('devicelight', function(event) {
+        var light = document.getElementsByTagName('light')[0];
+
+        if (event.value < 50) {
+          light.classList.add('darklight');
+          light.classList.remove('brightlight');
+        } else {
+          light.classList.add('brightlight');
+          light.classList.remove('darklight');
+        }
+      });
 
   		// Put event listeners into place
   		window.addEventListener("DOMContentLoaded", function() {
@@ -80,7 +94,8 @@
   	</script>
 
   </div>
-<p> <div id="location"></div>
+<p><div id="location"></div></p>
+<p><div id="light"></div></p>
 <p><strong>Note:</strong> The canvas tag is not supported in Internet
 Explorer 8 and earlier versions.</p>
 </body>

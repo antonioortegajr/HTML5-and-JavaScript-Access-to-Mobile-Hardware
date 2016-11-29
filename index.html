@@ -27,25 +27,21 @@
         }
 
         function showPosition(position) {
-          x.innerHTML = "Latitude: " + position.coords.latitude +
+          x.innerHTML = "This was taken at Latitude: " + position.coords.latitude +
           "<br>Longitude: " + position.coords.longitude;
           }
 
         }
-      //light event
-      window.addEventListener('devicelight', function(event) {
-        var light = document.getElementsByTagName('light')[0];
-
-        if (event.value < 50) {
-          light.classList.add('darklight');
-          light.classList.remove('brightlight');
-        } else {
-          light.classList.add('brightlight');
-          light.classList.remove('darklight');
-        }
-      });
 
   		// Put event listeners into place
+
+      //light event working in FF
+      window.addEventListener("devicelight", function (event) {
+        var luminosity = event.value;
+        console.log(luminosity);
+      });
+
+//Video preview events
   		window.addEventListener("DOMContentLoaded", function() {
   			// Grab elements, create settings, etc.
               var canvas = document.getElementById('canvas');

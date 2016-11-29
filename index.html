@@ -2,6 +2,7 @@
 <head>
 </head>
 <body>
+  <p>This page is just HTML5 and Javascript. You will be asked for permission to access your hardware</p>
   <p>Canvas tag for the snap shot:</p>
   <!-- thanks to https://davidwalsh.name/demo/camera.php -->
   <video id="video" width="340" autoplay></video>
@@ -19,8 +20,15 @@
         } else {
           x.innerHTML = "Geolocation is not supported by this browser.";
         }
-        x.innerHTML = "Latitude: " + position.coords.latitude +
-        "<br>Longitude: " + position.coords.longitude;
+
+        function showPosition(position) {
+          x.innerHTML = "Latitude: " + position.coords.latitude +
+          "<br>Longitude: " + position.coords.longitude;
+          }
+
+
+
+
         }
 
   		// Put event listeners into place

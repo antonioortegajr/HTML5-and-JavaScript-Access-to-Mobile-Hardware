@@ -11,3 +11,6 @@ This repo is an exploration of HTML5 and JavaScript vs Native Mobile App
 
 ## Purpose
 The reason for this repo is test the boundaries between native mobile and HTML5/JavaScript.
+As HTML5 and JavaScript has evolved more and more areas of the mobile device hardware is available the browser.
+
+There are still some browser support issues.

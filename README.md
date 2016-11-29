@@ -1,6 +1,6 @@
 # HTML5 and JavaScript vs Native Mobile App
 
-This repo is an exploration of HTML5 and JavaScript vs Native Mobile App
+This repo is an exploration of HTML5 and JavaScript vs Native Mobile App access to the mobile hardware
 
 
 ## Added so far:

@@ -15,5 +15,6 @@ As HTML5 and JavaScript has evolved more and more areas of the mobile device har
 
 There are still some browser support issues.
 
+## Not meant to replace native mobile apps completely
 
-## Not meant to replace native mobile apps completely.
+There is still great reason for native mobile apps.

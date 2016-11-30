@@ -18,3 +18,6 @@ There are still some browser support issues.
 ## Not meant to replace native mobile apps completely
 
 There is still great reason for native mobile apps.
+
+### GitHub page
+https://antonioortegajr.github.io/HTML5-and-JavaScript-Access-to-Mobile-Hardware/

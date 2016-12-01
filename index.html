@@ -5,7 +5,15 @@
       https://davidwalsh.name/demo/camera.php
       http://www.w3schools.com/html/html5_geolocation.asp
       https://www.html5rocks.com/en/tutorials/device/orientation/
+      https://www.html5rocks.com/en/mobile/mobifying/
     -->
+    <meta name="viewport"
+            content="width=device-width, initial-scale=1.0, minimum-scale=1.0" />
+
+      <link rel="apple-touch-icon"
+            href="/static/images/identity/HTML5_Badge_64.png" />
+      <link rel="apple-touch-icon-precomposed"
+            href="/static/images/identity/HTML5_Badge_64.png" />
 </head>
 <body>
   <p>This page is just HTML5 and Javascript. You will be asked for permission to access your hardware</p>
@@ -15,6 +23,12 @@
       <button id="snap" class="sexyButton" onclick="snapShot()">Snap Photo</button>
   </p>
   	<canvas id="canvas" width="640" height="480"></canvas>
+    <script>
+    // Hides mobile browser's address bar when page is done loading.
+  window.addEventListener('load', function(e) {
+    setTimeout(function() { window.scrollTo(0, 1); }, 1);
+  }, false);
+    </script>
   	<script>
       function snapShot(){
         //GEO Location. Requires https

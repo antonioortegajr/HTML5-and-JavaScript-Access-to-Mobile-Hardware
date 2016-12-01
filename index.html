@@ -16,49 +16,86 @@
             href="http://antonioortegajr.com/wp-content/uploads/HTML5_Badge_64.png" />
 </head>
 <body>
-  <p>This page is just HTML5 and Javascript. You will be asked for permission to access your hardware</p>
-  <p>Canvas tag for the snap shot:</p>
+  <p>This page is just HTML5 and Javascript. You will be asked for permission to access SOME your hardware</p>
+  <h2>Battery</h2>
+  <p><div id="battery"></div></p>
+  <p>Canvas tag for Media Capture and Streams:</p>
   <video id="video" width="340" autoplay></video>
   <p>
       <button id="snap" class="sexyButton" onclick="snapShot()">Snap Photo</button>
   </p>
   	<canvas id="canvas" width="640" height="480"></canvas>
+    <h2>Location</h2>
+    <p><div id="location"></div></p>
+    <p><div id="light"></div></p>
+    <p>Or if you want upload from the gallery</p>
+    <label>Image </lable><input type="file" accept="image/*;capture=camera">
+    <label>Video </lable><input type="file" accept="video/*;capture=camcorder">
+    <p><strong>Note:</strong> The canvas tag is not supported in Internet
+    Explorer 8 and earlier versions.</p>
 
-<input type="file" accept="audio/*;capture=microphone">
-
+<!-- JS -->
     <script>
     // Hides mobile browser's address bar when page is done loading.
   window.addEventListener('load', function(e) {
     setTimeout(function() { window.scrollTo(0, 1); }, 1);
   }, false);
     </script>
+    <script>
+    //Check for battery API support
+    if("getBattery" in navigator) {
+      document.getElementById('battery').innerHTML='Supported and no permmision needed';
+    } else {
+      document.getElementById('battery').innerHTML='Not Supported';
+      }
+    </script>
+    <script>
+    //GEO Location. Requires https
+    var output = document.getElementById("location");
+
+    if (!navigator.geolocation){
+      output.innerHTML = "<p>Geolocation is not supported by your browser</p>";
+      }
+
+    function success(position) {
+      var latitude  = position.coords.latitude;
+      var longitude = position.coords.longitude;
+
+      output.innerHTML = '<p>Latitude is ' + latitude + '° <br>Longitude is ' + longitude + '°</p>';
+
+      var img = new Image();
+      img.src = "https://maps.googleapis.com/maps/api/staticmap?center=" + latitude + "," + longitude + "&zoom=13&size=300x300&sensor=false";
+
+      output.appendChild(img);
+    }
+
+    function error() {
+    output.innerHTML = "Unable to retrieve your location";
+    }
+
+    output.innerHTML = "<p>Locating…</p>";
+
+    navigator.geolocation.getCurrentPosition(success, error);
+    </script>
+    <script>
+    if("ondevicelight" in window)
+{
+   // API supported.
+   window.addEventListener("devicelight", function(event) {
+        //light level is returned in lux unit.
+        alert("The current level of ambient light is " + event.value + " lux");
+    });
+}
+else
+{
+   // API not supported
+   alert("API not supported");
+}
+
+    </script>
   	<script>
-      function snapShot(){
-        //GEO Location. Requires https
-        var x = document.getElementById("location");
-
-        if (navigator.geolocation) {
-          navigator.geolocation.getCurrentPosition(showPosition);
-        } else {
-          x.innerHTML = "Geolocation is not supported by this browser.";
-        }
-
-        function showPosition(position) {
-          x.innerHTML = "This was taken at Latitude: " + position.coords.latitude +
-          "<br>Longitude: " + position.coords.longitude;
-          }
-
-        }
-
-  		// Put event listeners into place
-
-      //light event working in FF
-      window.addEventListener("devicelight", function (event) {
-        var luminosity = event.value;
-        console.log(luminosity);
-      });
-
-//Video preview events
+    //Use canvas to stream preview and then take snapshot
+    //Video preview events
   		window.addEventListener("DOMContentLoaded", function() {
   			// Grab elements, create settings, etc.
               var canvas = document.getElementById('canvas');
@@ -107,9 +144,5 @@
   	</script>
 
   </div>
-<p><div id="location"></div></p>
-<p><div id="light"></div></p>
-<p><strong>Note:</strong> The canvas tag is not supported in Internet
-Explorer 8 and earlier versions.</p>
 </body>
 </html>

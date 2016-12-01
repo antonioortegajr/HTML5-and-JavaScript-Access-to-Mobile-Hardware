@@ -18,21 +18,23 @@
 <body>
   <p>This page is just HTML5 and Javascript. You will be asked for permission to access SOME your hardware</p>
   <h2>Battery</h2>
-  <p><div id="battery"></div></p>
-  <p>Canvas tag for Media Capture and Streams:</p>
+  <p style="margin: 10px">Initial battery status was <b id="charging">unknown</b>, charging time <b id="chargingTime">unknown</b>, discharging time <b id="dischargingTime">unknown</b>, level <b id="level">unknown</b>.</p>
+<div id="target"></div>
+  <h2>Canvas tag for Media Capture and Streams</h2>
   <video id="video" width="340" autoplay></video>
   <p>
       <button id="snap" class="sexyButton" onclick="snapShot()">Snap Photo</button>
   </p>
   	<canvas id="canvas" width="640" height="480"></canvas>
-    <h2>Location</h2>
-    <p><div id="location"></div></p>
-    <p><div id="light"></div></p>
     <p>Or if you want upload from the gallery</p>
     <label>Image </lable><input type="file" accept="image/*;capture=camera">
     <label>Video </lable><input type="file" accept="video/*;capture=camcorder">
     <p><strong>Note:</strong> The canvas tag is not supported in Internet
     Explorer 8 and earlier versions.</p>
+    <h2>Location</h2>
+    <p><div id="location"></div></p>
+    <h2>Ambient Light</h2>
+    <p><div id="light"></div></p>
 
 <!-- JS -->
     <script>
@@ -43,11 +45,15 @@
     </script>
     <script>
     //Check for battery API support
-    if("getBattery" in navigator) {
-      document.getElementById('battery').innerHTML='Supported and no permmision needed';
-    } else {
-      document.getElementById('battery').innerHTML='Not Supported';
-      }
+    if ('getBattery' in navigator || ('battery' in navigator && 'Promise' in window)) {
+  var target = document.getElementById('target');
+
+  function handleChange(change) {
+    var timeBadge = new Date().toTimeString().split(' ')[0];
+    var newState = document.createElement('p');
+    newState.innerHTML = '<span class="badge">' + timeBadge + '</span> ' + change + '.';
+    target.appendChild(newState);
+  }
     </script>
     <script>
     //GEO Location. Requires https
@@ -139,8 +145,6 @@ else
 
   			});
   		}, false);
-
-
   	</script>
 
   </div>

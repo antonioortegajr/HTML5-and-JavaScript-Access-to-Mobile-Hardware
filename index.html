@@ -80,16 +80,16 @@
     <script>
     if("ondevicelight" in window)
 {
-   // API supported.
+   // check if light API supported.
    window.addEventListener("devicelight", function(event) {
         //light level is returned in lux unit.
-        alert("The current level of ambient light is " + event.value + " lux");
+        document.getElementById('light').innerHTML= "The current level of ambient light is " + event.value + " lux";
     });
 }
 else
 {
    // API not supported
-   alert("API not supported");
+   document.getElementById('light').innerHTML= "Ambient Light API not supported";
 }
 
     </script>

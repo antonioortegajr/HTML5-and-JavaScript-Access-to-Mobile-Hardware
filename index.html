@@ -1,0 +1,77 @@
+<html>
+<head>
+  <!-- Compiled and minified CSS -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/css/materialize.min.css">
+  <!-- Compiled and minified JavaScript -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.97.8/js/materialize.min.js"></script>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<style>
+body{
+  padding-left: 10%;
+  padding-right: 10%;
+}
+.sidenav {
+    height: 100%;
+    width: 0;
+    position: fixed;
+    z-index: 100;
+    top: 0;
+    left: 0;
+    background-color: #111;
+    overflow-x: hidden;
+    transition: 0.5s;
+    padding-top: 60px;
+}
+
+.sidenav a {
+    padding: 8px 8px 8px 32px;
+    text-decoration: none;
+    font-size: 25px;
+    color: #818181;
+    display: block;
+    transition: 0.3s
+}
+
+.sidenav a:hover, .offcanvas a:focus{
+    color: #f1f1f1;
+}
+
+.sidenav .closebtn {
+    position: absolute;
+    top: 0;
+    right: 25px;
+    font-size: 36px;
+    margin-left: 50px;
+}
+
+@media screen and (max-height: 450px) {
+  .sidenav {padding-top: 15px;}
+  .sidenav a {font-size: 18px;}
+}
+</style>
+</style>
+  <link rel="apple-touch-icon" href="http://antonioortegajr.com/wp-content/uploads/HTML5_Badge_64.png" />
+  <link rel="apple-touch-icon-precomposed" href="http://antonioortegajr.com/wp-content/uploads/HTML5_Badge_64.png" />
+</head>
+<body>
+  <p>These pages are just HTML5 and Javascript. You will be asked for permission to access SOME your hardware</p>
+  <span style="font-size:30px;cursor:pointer" onclick="openNav()">&#9776; open</span>
+  <div id="mySidenav" class="sidenav">
+  <a href="javascript:void(0)" class="closebtn" onclick="closeNav()">&times;</a>
+    <a href="#battery" onclick="templates('battery')">Battery data <i class="fa fa-battery-4"></i></a>
+    <a href="#canvas" onclick="templates('canvas')">Camera stream <i class="fa fa-camera"></i></a>
+    <a href="#geolocation" onclick="templates('geolocation')">Geo Location <i class="fa fa-map-marker"></i></a>
+    <a href="#light" onclick="templates('light')">Ambiant light <i class="fa fa-lightbulb-o"></i></a>
+    </div>
+    <article id="imported">
+    </article>
+
+    <link rel="import" id="import-file" href="imports/imports.html">
+    <link rel="import" id="battery" href="battery/battery.html">
+    <link rel="import" id="canvas" href="canvas/canvas.html">
+    <link rel="import" id="geolocation" href="geolocation/geolocation.html">
+    <link rel="import" id="light" href="light/light.html">
+    <script type="text/javascript" src="scripts/onload.js"></script>
+    <script type="text/javascript" src="scripts/main.js"></script>
+</body>
+</html>

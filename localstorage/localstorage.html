@@ -1,5 +1,15 @@
 <div class="localstorage">
   <h2>local Storage</h2>
   <button onclick="local()">Try local storage <i class="fa fa-lightbulb-o"></i></button>
+  <p contenteditable="true">This is a paragraph. It is editable. Try to change this text.</p>
 
 </div>
+<script>
+if (typeof(Storage) !== "undefined") {
+    // Code for localStorage/sessionStorage.
+    alert("storage supported");
+} else {
+    // Sorry! No Web Storage support..
+    alert("storage NOT supported");
+}
+</script>

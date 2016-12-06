@@ -148,6 +148,17 @@ function local(){
 }
 }
 
+function storage)(){
+if (typeof(Storage) !== "undefined") {
+    // Code for localStorage/sessionStorage.
+    alert("storage supported");
+} else {
+    // Sorry! No Web Storage support..
+    alert("storage NOT supported");
+}
+}
+
+
 
 //menu
 function openNav() {

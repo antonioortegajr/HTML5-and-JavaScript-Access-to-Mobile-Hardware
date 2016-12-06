@@ -139,7 +139,17 @@ else
 
 }
 
+//local storage
+funtion local(){
+  if (typeof(Storage) !== "undefined") {
+    console.log("local storage supported");
+} else {
+    console.log("local storage NOT supported");
+}
+}
 
+
+//menu
 function openNav() {
     document.getElementById("mySidenav").style.width = "250px";
 }

@@ -148,7 +148,7 @@ function local(){
 }
 }
 
-function storage)(){
+function storage(){
 if (typeof(Storage) !== "undefined") {
     // Code for localStorage/sessionStorage.
     alert("storage supported");

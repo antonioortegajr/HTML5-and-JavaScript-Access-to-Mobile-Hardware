@@ -140,7 +140,7 @@ else
 }
 
 //local storage
-funtion local(){
+function local(){
   if (typeof(Storage) !== "undefined") {
     console.log("local storage supported");
 } else {

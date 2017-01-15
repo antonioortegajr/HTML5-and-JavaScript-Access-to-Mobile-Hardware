@@ -167,7 +167,7 @@ function vibrate(){
 navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
 
 if ("vibrate" in navigator) {
-	 document.getElementById('v').innerHTML='vibration API supported';
+	 document.getElementById('vibrate').innerHTML='vibration API supported';
    // vibrate for one second
 navigator.vibrate(1000);
 }

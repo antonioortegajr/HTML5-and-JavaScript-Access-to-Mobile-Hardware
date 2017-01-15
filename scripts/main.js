@@ -163,14 +163,14 @@ function orientation() {
 
 //vibration
 function vibrate(){
-  // enable vibration support
-navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+    // enable vibration support
+    navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
 
-if ("vibrate" in navigator) {
-	 document.getElementById('vibrate').innerHTML='vibration API supported';
-   // vibrate for one second
-navigator.vibrate(1000);
-}
+    if ("vibrate" in navigator) {
+        document.getElementById('vibrate').innerHTML='vibration API supported';
+        // vibrate for one second
+        navigator.vibrate(1000);
+    }
 }
 
 //menu

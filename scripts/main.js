@@ -175,9 +175,9 @@ function vibrate(){
 
 //menu
 function openNav() {
-    document.getElementById("mySidenav").style.width = "250px";
+    document.getElementById("sidenav").style.left = "0";
 }
 
 function closeNav() {
-    document.getElementById("mySidenav").style.width = "0";
+    document.getElementById("sidenav").style.left = "-100%";
 }

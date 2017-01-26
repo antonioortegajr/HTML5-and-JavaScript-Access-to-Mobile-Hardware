@@ -10,6 +10,9 @@
         <link rel="stylesheet" href="style.css" />
         <link rel="apple-touch-icon" href="http://antonioortegajr.com/wp-content/uploads/HTML5_Badge_64.png" />
         <link rel="apple-touch-icon-precomposed" href="http://antonioortegajr.com/wp-content/uploads/HTML5_Badge_64.png" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     </head>
     <body>
         <div class="nav">
@@ -23,7 +26,6 @@
                     <a href="geolocation.html">Geo Location <i class="fa fa-map-marker"></i></a>
                     <a href="light.html">Ambiant light <i class="fa fa-lightbulb-o"></i></a>
                     <a href="patternregex.html">Pattern Regex <i class="fa fa-binoculars"></i></a>
-                    <a href="localstorage.html">Local Storage <i class="fa fa-database"></i></a>
                     <a href="orientation.html">Orientation <i class="fa fa-mail-forward"></i></a>
                     <a href="vibration.html">Vibration <i class="fa fa-exclamation"></i></a>
                 </div>
@@ -41,6 +43,52 @@
             <button onclick="battery()" class="waves-effect waves-light btn-large">Check battery status from this web page <i class="fa fa-battery-4"></i></button>
             <p style="margin: 10px">Initial battery status was <b id="charging">unknown</b>, charging time <b id="chargingTime">unknown</b>, discharging time <b id="dischargingTime">unknown</b>, level <b id="level">unknown</b>.</p>
             <div id="target"></div>
+            <pre><code>
+    function battery() {
+        //Check for battery API support
+        if ('getBattery' in navigator || ('battery' in navigator && 'Promise' in window)) {
+            var target = document.getElementById('target');
+
+            function handleChange(change) {
+                var timeBadge = new Date().toTimeString().split(' ')[0];
+                var newState = document.createElement('p');
+                newState.innerHTML = '<span class="badge">' + timeBadge + '</span> ' + change + '.';
+                target.appendChild(newState);
+            }
+
+            var batteryPromise;
+
+            if ('getBattery' in navigator) {
+                batteryPromise = navigator.getBattery();
+            } else {
+                batteryPromise = Promise.resolve(navigator.battery);
+            }
+
+            batteryPromise.then(function(battery) {
+                document.getElementById('charging').innerHTML = battery.charging ? 'charging' : 'discharging';
+                document.getElementById('chargingTime').innerHTML = battery.chargingTime + ' s';
+                document.getElementById('dischargingTime').innerHTML = battery.dischargingTime + ' s';
+                document.getElementById('level').innerHTML = battery.level;
+
+                battery.addEventListener('chargingchange', function() {
+                    handleChange('Battery charging changed to <b>' + (battery.charging ? 'charging' : 'discharging') + '</b>')
+                });
+
+                battery.addEventListener('chargingtimechange', function() {
+                    handleChange('Battery charging time changed to <b>' + battery.chargingTime + ' s</b>');
+                });
+
+                battery.addEventListener('dischargingtimechange', function() {
+                    handleChange('Battery discharging time changed to <b>' + battery.dischargingTime + ' s</b>');
+                });
+
+                battery.addEventListener('levelchange', function() {
+                    handleChange('Battery level changed to <b>' + battery.level + '</b>');
+                });
+            });
+        }
+    }
+</code></pre>
         </div>
     </body>
 </html>

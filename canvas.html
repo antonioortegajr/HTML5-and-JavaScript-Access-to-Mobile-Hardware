@@ -10,6 +10,9 @@
         <link rel="stylesheet" href="style.css" />
         <link rel="apple-touch-icon" href="http://antonioortegajr.com/wp-content/uploads/HTML5_Badge_64.png" />
         <link rel="apple-touch-icon-precomposed" href="http://antonioortegajr.com/wp-content/uploads/HTML5_Badge_64.png" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     </head>
     <body>
         <div class="nav">
@@ -23,7 +26,6 @@
                     <a href="geolocation.html">Geo Location <i class="fa fa-map-marker"></i></a>
                     <a href="light.html">Ambiant light <i class="fa fa-lightbulb-o"></i></a>
                     <a href="patternregex.html">Pattern Regex <i class="fa fa-binoculars"></i></a>
-                    <a href="localstorage.html">Local Storage <i class="fa fa-database"></i></a>
                     <a href="orientation.html">Orientation <i class="fa fa-mail-forward"></i></a>
                     <a href="vibration.html">Vibration <i class="fa fa-exclamation"></i></a>
                 </div>
@@ -35,7 +37,7 @@
             <h1>
                 Web APIs
                 <small>
-                    Canvas API
+                    Media and Canvas API
                 </small>
             </h1>
 
@@ -50,7 +52,53 @@
 <label>Video </lable><input type="file" accept="video/*;capture=camcorder">
 <p><strong>Note:</strong> The canvas tag is not supported in Internet
 Explorer 8 and earlier versions.</p>
+<pre><code>
+//canvas js
+function can() {
+//Use canvas to stream preview and then take snapshot
+//Video preview events
+// Grab elements, create settings, etc.
+var canvas = document.getElementById('canvas');
+var video = document.getElementById('video');
+var mediaConfig = {
+video: true
+};
+var errBack = function(e) {
+console.log('An error has occurred!', e)
+};
+// Put video listeners into place
+if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
+navigator.mediaDevices.getUserMedia(mediaConfig).then(function(stream) {
+    video.src = window.URL.createObjectURL(stream);
+    video.play();
+});
+}
+/* Legacy code below! */
+else if (navigator.getUserMedia) { // Standard
+navigator.getUserMedia(mediaConfig, function(stream) {
+    video.src = stream;
+    video.play();
+}, errBack);
+} else if (navigator.webkitGetUserMedia) { // WebKit-prefixed
+navigator.webkitGetUserMedia(mediaConfig, function(stream) {
+    video.src = window.webkitURL.createObjectURL(stream);
+    video.play();
+}, errBack);
+} else if (navigator.mozGetUserMedia) { // Mozilla-prefixed
+navigator.mozGetUserMedia(mediaConfig, function(stream) {
+    video.src = window.URL.createObjectURL(stream);
+    video.play();
+}, errBack);
+}
 
-        </div>
+var context = canvas.getContext('2d');
+// Trigger photo take
+document.getElementById('snap').addEventListener('click', function() {
+context.drawImage(video, 0, 0, 640, 480);
+var x = document.getElementById("demo");
+});
+}
+</code></pre>
+    </div>
     </body>
 </html>

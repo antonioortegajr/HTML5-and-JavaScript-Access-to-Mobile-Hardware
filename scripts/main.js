@@ -42,7 +42,6 @@ function battery() {
             });
         });
     }
-
 }
 
 //canvas js
@@ -133,26 +132,6 @@ function light() {
     } else {
         // API not supported
         document.getElementById('light').innerHTML = "Ambient Light API not supported";
-    }
-
-}
-
-//local storage
-function local() {
-    if (typeof(Storage) !== "undefined") {
-        console.log("local storage supported");
-    } else {
-        console.log("local storage NOT supported");
-    }
-}
-
-function storage() {
-    if (typeof(Storage) !== "undefined") {
-        // Code for localStorage/sessionStorage.
-        alert("storage supported");
-    } else {
-        // Sorry! No Web Storage support..
-        alert("storage NOT supported");
     }
 }
 

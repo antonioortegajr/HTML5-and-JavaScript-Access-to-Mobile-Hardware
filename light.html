@@ -10,6 +10,9 @@
         <link rel="stylesheet" href="style.css" />
         <link rel="apple-touch-icon" href="http://antonioortegajr.com/wp-content/uploads/HTML5_Badge_64.png" />
         <link rel="apple-touch-icon-precomposed" href="http://antonioortegajr.com/wp-content/uploads/HTML5_Badge_64.png" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     </head>
     <body>
         <div class="nav">
@@ -23,7 +26,6 @@
                     <a href="geolocation.html">Geo Location <i class="fa fa-map-marker"></i></a>
                     <a href="light.html">Ambiant light <i class="fa fa-lightbulb-o"></i></a>
                     <a href="patternregex.html">Pattern Regex <i class="fa fa-binoculars"></i></a>
-                    <a href="localstorage.html">Local Storage <i class="fa fa-database"></i></a>
                     <a href="orientation.html">Orientation <i class="fa fa-mail-forward"></i></a>
                     <a href="vibration.html">Vibration <i class="fa fa-exclamation"></i></a>
                 </div>
@@ -43,6 +45,21 @@
                 <button onclick="light()">Try Ambiant light sensor <i class="fa fa-lightbulb-o"></i></button>
                 <p><div id="light"></div></p>
             </div>
+            <pre><code>
+//light js
+function light() {
+    if ("ondevicelight" in window) {
+        // check if light API supported.
+        window.addEventListener("devicelight", function(event) {
+            //light level is returned in lux unit.
+            document.getElementById('light').innerHTML = "The current level of ambient light is " + event.value + " lux";
+        });
+    } else {
+        // API not supported
+        document.getElementById('light').innerHTML = "Ambient Light API not supported";
+    }
+}
+            </code></pre>
         </div>
     </body>
 </html>

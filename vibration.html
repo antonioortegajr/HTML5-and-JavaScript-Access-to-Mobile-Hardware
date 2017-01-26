@@ -10,6 +10,9 @@
         <link rel="stylesheet" href="style.css" />
         <link rel="apple-touch-icon" href="http://antonioortegajr.com/wp-content/uploads/HTML5_Badge_64.png" />
         <link rel="apple-touch-icon-precomposed" href="http://antonioortegajr.com/wp-content/uploads/HTML5_Badge_64.png" />
+        <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/styles/default.min.css">
+        <script src="//cdnjs.cloudflare.com/ajax/libs/highlight.js/9.9.0/highlight.min.js"></script>
+        <script>hljs.initHighlightingOnLoad();</script>
     </head>
     <body>
         <div class="nav">
@@ -23,7 +26,6 @@
                     <a href="geolocation.html">Geo Location <i class="fa fa-map-marker"></i></a>
                     <a href="light.html">Ambiant light <i class="fa fa-lightbulb-o"></i></a>
                     <a href="patternregex.html">Pattern Regex <i class="fa fa-binoculars"></i></a>
-                    <a href="localstorage.html">Local Storage <i class="fa fa-database"></i></a>
                     <a href="orientation.html">Orientation <i class="fa fa-mail-forward"></i></a>
                     <a href="vibration.html">Vibration <i class="fa fa-exclamation"></i></a>
                 </div>
@@ -44,6 +46,19 @@
                 <button onclick="vibrate()">Control vibration form a web page <i class="fa fa-exclamation"></i></button>
                 <p><div id="vibrate"></div></p>
             </div>
+            <pre><code>
+//vibration
+function vibrate(){
+    // enable vibration support
+    navigator.vibrate = navigator.vibrate || navigator.webkitVibrate || navigator.mozVibrate || navigator.msVibrate;
+
+    if ("vibrate" in navigator) {
+        document.getElementById('vibrate').innerHTML='vibration API supported';
+        // vibrate for one second
+        navigator.vibrate(1000);
+    }
+}
+            </code></pre>
         </div>
     </body>
 </html>
